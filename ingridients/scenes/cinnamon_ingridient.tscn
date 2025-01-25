@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxnoc2r1008vv"]
+
+[ext_resource type="PackedScene" uid="uid://bd8xcly8arki6" path="res://ingridients/_ingridient.tscn" id="1_0ufow"]
+[ext_resource type="Texture2D" uid="uid://bcto6ho3wp8hs" path="res://ingridients/cinnamon.png" id="2_yp4uk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80di6"]
+size = Vector2(56, 39.5)
+
+[node name="CinnamonIngridient" instance=ExtResource("1_0ufow")]
+scale = Vector2(2, 2)
+ingridient = "cinnamon"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_yp4uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.5, 3.25)
+shape = SubResource("RectangleShape2D_80di6")

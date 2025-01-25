@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsgnqiedjkpxs"]
+
+[ext_resource type="PackedScene" uid="uid://dd5hl7k0fgrf1" path="res://cafe/cafe.tscn" id="1_n30sh"]
+[ext_resource type="Script" path="res://game.gd" id="1_ryy12"]
+[ext_resource type="AudioStream" uid="uid://b6f5sjtt2c1ps" path="res://apple_cider.ogg" id="2_ngtux"]
+
+[sub_resource type="Gradient" id="Gradient_elys3"]
+offsets = PackedFloat32Array(0.986885)
+colors = PackedColorArray(0.716718, 0.377658, 0.339779, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_02wc4"]
+gradient = SubResource("Gradient_elys3")
+
+[node name="Game" type="Node"]
+script = ExtResource("1_ryy12")
+
+[node name="Cafe" parent="." instance=ExtResource("1_n30sh")]
+position = Vector2(8, 128)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 8)
+anchor_mode = 0
+zoom = Vector2(1.05, 1.05)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ngtux")
+pitch_scale = 0.95
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="RecipeCanvas" type="CanvasLayer" parent="."]
+
+[node name="RecipeUI" type="Control" parent="RecipeCanvas"]
+custom_minimum_size = Vector2(276, 0)
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/RecipeUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_02wc4")
+
+[node name="Control" type="Control" parent="RecipeCanvas"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 944.0
+offset_top = 628.0
+offset_right = 1194.0
+offset_bottom = 678.0
+size_flags_horizontal = 0
+
+[node name="MusicSlider" type="HSlider" parent="RecipeCanvas/Control"]
+custom_minimum_size = Vector2(150, 15)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -100.0
+offset_bottom = 16.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[connection signal="value_changed" from="RecipeCanvas/Control/MusicSlider" to="." method="_on_music_slider_value_changed"]

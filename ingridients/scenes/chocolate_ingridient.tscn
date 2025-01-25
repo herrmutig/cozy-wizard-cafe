@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dabucqmcm4l37"]
+
+[ext_resource type="PackedScene" uid="uid://bd8xcly8arki6" path="res://ingridients/_ingridient.tscn" id="1_hfnxf"]
+[ext_resource type="Texture2D" uid="uid://cmf0856tqfc2k" path="res://ingridients/chocolate.png" id="2_ktqhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fia6"]
+size = Vector2(30.5, 39)
+
+[node name="ChocolateIngridient" instance=ExtResource("1_hfnxf")]
+scale = Vector2(2, 2)
+ingridient = "chocolate"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ktqhq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(5.25, 9.5)
+shape = SubResource("RectangleShape2D_8fia6")

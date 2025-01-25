@@ -1,0 +1,208 @@
+[gd_scene load_steps=22 format=3 uid="uid://ywgrlvnar3x3"]
+
+[ext_resource type="FontFile" uid="uid://d4flc6wngk2go" path="res://fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="1_4m5u6"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_dbjfr"]
+[ext_resource type="Texture2D" uid="uid://di4g8a8y3gkbx" path="res://cozy_winter_jam_logo.png" id="2_f862w"]
+[ext_resource type="AudioStream" uid="uid://dg60522rumcbc" path="res://Viktor Kraus - Blueberries.mp3" id="2_r022e"]
+
+[sub_resource type="Gradient" id="Gradient_pjq6y"]
+offsets = PackedFloat32Array(0.00655738, 0.144262, 0.655738, 1)
+colors = PackedColorArray(0.0898334, 0.870685, 0.824439, 1, 0.398761, 0.846346, 0.91585, 1, 0.642326, 0.83102, 0.906398, 1, 0.478431, 0.870588, 0.854902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k3aoi"]
+gradient = SubResource("Gradient_pjq6y")
+width = 128
+height = 128
+fill_from = Vector2(0.230769, 0.217949)
+fill_to = Vector2(0.222222, 0.940171)
+
+[sub_resource type="GDScript" id="GDScript_fm6km"]
+script/source = "extends Label
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3enu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rwkkb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tb8eg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amtue"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lx6o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hn7dm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dkuh2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dmxpq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54kee"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_espi4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj3j7"]
+
+[sub_resource type="Animation" id="Animation_yde37"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/VBoxContainer/Control/Title:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8j80y"]
+resource_name = "menu_anim"
+length = 3.33334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/VBoxContainer/Control/Title:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wukb7"]
+_data = {
+"RESET": SubResource("Animation_yde37"),
+"menu_anim": SubResource("Animation_8j80y")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dbjfr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_k3aoi")
+
+[node name="Winter Jam Logo" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.678431)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 556.0
+offset_right = 302.0
+offset_bottom = 646.0
+rotation = -0.00645894
+texture = ExtResource("2_f862w")
+expand_mode = 2
+
+[node name="CenterContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -382.0
+offset_top = -55.0
+offset_right = 382.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.882353, 0.952941, 1, 1)
+theme_override_fonts/font = ExtResource("1_4m5u6")
+theme_override_font_sizes/font_size = 90
+text = "Cozy Wizard Café"
+script = SubResource("GDScript_fm6km")
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.737255, 0.607843, 1)
+theme_override_colors/font_hover_color = Color(0.847406, 0.73915, 0.609589, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.560784, 0.937255, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.737255, 0.607843, 1)
+theme_override_colors/font_color = Color(0.880556, 0.951138, 0.998239, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("1_4m5u6")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3enu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rwkkb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tb8eg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_amtue")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_2lx6o")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_hn7dm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dkuh2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dmxpq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_54kee")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_espi4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lj3j7")
+text = "Start"
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+anchors_preset = 0
+offset_left = 817.0
+offset_top = 579.0
+offset_right = 1067.0
+offset_bottom = 629.0
+size_flags_horizontal = 0
+
+[node name="MusicSlider" type="HSlider" parent="Control"]
+custom_minimum_size = Vector2(250, 15)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r022e")
+pitch_scale = 1.08
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wukb7")
+}
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="value_changed" from="Control/MusicSlider" to="." method="_on_music_slider_value_changed"]

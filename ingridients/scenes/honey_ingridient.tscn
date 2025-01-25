@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8ljm7dfpt611"]
+
+[ext_resource type="PackedScene" uid="uid://bd8xcly8arki6" path="res://ingridients/_ingridient.tscn" id="1_dfsdr"]
+[ext_resource type="Texture2D" uid="uid://dn4yen4pp36co" path="res://ingridients/honey.png" id="2_50o1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip4hd"]
+size = Vector2(42.5, 39.5)
+
+[node name="HoneyIngridient" instance=ExtResource("1_dfsdr")]
+scale = Vector2(2, 2)
+ingridient = "honey"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_50o1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.75, 9.75)
+shape = SubResource("RectangleShape2D_ip4hd")

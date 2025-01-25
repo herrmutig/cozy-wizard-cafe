@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8qs8ondxexx"]
+
+[ext_resource type="Script" path="res://boiler/boiler.gd" id="1_ar7ra"]
+[ext_resource type="SpriteFrames" uid="uid://l1afbedlwxpb" path="res://boiler/boiler_spriteframes.tres" id="2_3g41o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bru3n"]
+size = Vector2(40, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed7hy"]
+size = Vector2(32, 20)
+
+[node name="Boiler" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ar7ra")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_3g41o")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bru3n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_ed7hy")
+debug_color = Color(0.969302, 0, 0.462251, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

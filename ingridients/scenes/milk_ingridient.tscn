@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://078gss1qcl4h"]
+
+[ext_resource type="PackedScene" uid="uid://bd8xcly8arki6" path="res://ingridients/_ingridient.tscn" id="1_87rqr"]
+[ext_resource type="Texture2D" uid="uid://bg301dh6vtu0" path="res://ingridients/milk.png" id="2_d72wu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s58id"]
+size = Vector2(36, 39)
+
+[node name="MilkIngridient" instance=ExtResource("1_87rqr")]
+scale = Vector2(2, 2)
+ingridient = "milk"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_d72wu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_s58id")
