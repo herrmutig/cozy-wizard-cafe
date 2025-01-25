@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://juh3ge1p70yb"]
+
+[ext_resource type="PackedScene" uid="uid://dcaht4b005pg3" path="res://characters/guest.tscn" id="1_vuioj"]
+[ext_resource type="Texture2D" uid="uid://e3etbqw66hdm" path="res://characters/character_2.png" id="2_a4lmn"]
+[ext_resource type="AudioStream" uid="uid://clposk1ggwxac" path="res://characters/sfx/sad_02.mp3" id="3_qb32p"]
+[ext_resource type="AudioStream" uid="uid://dpl80skfdtasb" path="res://characters/sfx/happy_02.mp3" id="4_bmwoe"]
+[ext_resource type="AudioStream" uid="uid://dkq3kwcrvvred" path="res://characters/sfx/happy_01.mp3" id="5_5woxc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u53ve"]
+streams_count = 2
+stream_0/stream = ExtResource("4_bmwoe")
+stream_1/stream = ExtResource("5_5woxc")
+
+[node name="Guest" instance=ExtResource("1_vuioj")]
+
+[node name="CharacterSprite2D" parent="." index="2"]
+texture = ExtResource("2_a4lmn")
+
+[node name="SadAudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("3_qb32p")
+bus = &"High_Sfx"
+
+[node name="HappyAudioStreamPlayer" parent="." index="11"]
+stream = SubResource("AudioStreamRandomizer_u53ve")
+volume_db = -3.572
+bus = &"High_Sfx"

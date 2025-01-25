@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-const SLIDE_MULTIPLIER = 30
+const SLIDE_MULTIPLIER = 75
 
 @export_range(50, 1000) var movement_speed:float = 150
 

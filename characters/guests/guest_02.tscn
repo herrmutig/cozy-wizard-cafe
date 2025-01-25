@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://5pawk2a4but5"]
+
+[ext_resource type="PackedScene" uid="uid://dcaht4b005pg3" path="res://characters/guest.tscn" id="1_qn6vh"]
+[ext_resource type="Texture2D" uid="uid://3gdk1f4lery8" path="res://characters/character_3.png" id="2_jif5g"]
+[ext_resource type="AudioStream" uid="uid://0sya7ntkbs2c" path="res://characters/sfx/happy_03.mp3" id="3_6m3yu"]
+[ext_resource type="AudioStream" uid="uid://cddga7bjcf2yj" path="res://characters/sfx/happy_04.mp3" id="4_ldb7s"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nqc3b"]
+random_pitch = 1.05
+streams_count = 2
+stream_0/stream = ExtResource("3_6m3yu")
+stream_1/stream = ExtResource("4_ldb7s")
+
+[node name="Guest" instance=ExtResource("1_qn6vh")]
+
+[node name="CharacterSprite2D" parent="." index="2"]
+texture = ExtResource("2_jif5g")
+
+[node name="HappyAudioStreamPlayer" parent="." index="11"]
+stream = SubResource("AudioStreamRandomizer_nqc3b")
+volume_db = -3.279

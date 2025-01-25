@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://globals.gd"
+Messenger="*res://messenger.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
 [display]
@@ -37,6 +38,7 @@ enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
 [gui]
 
+theme/custom_font="res://fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf"
 theme/default_font_antialiasing=0
 
 [input]

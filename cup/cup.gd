@@ -7,8 +7,15 @@ class_name Cup
 @export var _is_filled = false
 @export var ingridients:Array[String] = []
 
+var is_readied_first_time:bool = true
+# cant use ready or enter_tree because cup is getting in and out
+# of the tree when changing owners (guests, player, cafe)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if is_readied_first_time:
+		Globals.cup_count += 1
+
 	if _is_filled:
 		fill()
 		_update_cup_fill()
@@ -49,6 +56,7 @@ func add_ingridient(ingridient:Ingridient):
 		_update_cup_fill()
 
 func fill():
+	ingridients.clear()
 	a_sprite.play("water")
 	_is_filled = true
 
