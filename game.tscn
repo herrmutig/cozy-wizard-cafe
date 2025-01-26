@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://recipe_ui.gd" id="4_a7kxc"]
 [ext_resource type="Texture2D" uid="uid://bo0b4j1l1sf3h" path="res://ui/music_icon.png" id="6_r5bfg"]
 [ext_resource type="Texture2D" uid="uid://dxwatj4leehnh" path="res://characters/character_4.png" id="6_tejgk"]
+[ext_resource type="FontFile" uid="uid://hpqijdvgbwmb" path="res://fonts/Roboto/static/Roboto-Bold.ttf" id="7_quov3"]
 
 [sub_resource type="Gradient" id="Gradient_elys3"]
 offsets = PackedFloat32Array(0.0642674, 0.290488, 0.987147)
@@ -32,10 +33,6 @@ colors = PackedColorArray(0.912289, 0.912289, 0.912289, 1)
 gradient = SubResource("Gradient_3jkht")
 width = 10
 height = 10
-
-[sub_resource type="SystemFont" id="SystemFont_xsosf"]
-font_names = PackedStringArray("Calibri")
-font_weight = 600
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ryy12")
@@ -152,9 +149,9 @@ custom_minimum_size = Vector2(1200, 350)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 212.0
-offset_top = 551.0
+offset_top = 527.0
 offset_right = 2212.0
-offset_bottom = 901.0
+offset_bottom = 979.0
 scale = Vector2(0.235, 0.235)
 
 [node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_One"]
@@ -209,7 +206,7 @@ theme_override_constants/margin_bottom = 4
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
@@ -222,9 +219,9 @@ custom_minimum_size = Vector2(1200, 350)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 11.0
-offset_top = 106.0
+offset_top = 83.0
 offset_right = 2011.0
-offset_bottom = 456.0
+offset_bottom = 531.0
 scale = Vector2(0.235, 0.235)
 
 [node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Two"]
@@ -280,7 +277,7 @@ theme_override_constants/margin_bottom = 4
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
@@ -293,10 +290,10 @@ z_index = 3
 custom_minimum_size = Vector2(1200, 350)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 480.0
-offset_top = 151.0
-offset_right = 2480.0
-offset_bottom = 501.0
+offset_left = 450.0
+offset_top = 148.0
+offset_right = 2578.0
+offset_bottom = 511.0
 scale = Vector2(0.235, 0.235)
 
 [node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Three"]
@@ -356,7 +353,7 @@ theme_override_constants/margin_bottom = 4
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
@@ -431,12 +428,13 @@ theme_override_constants/margin_bottom = 4
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "Wonderful! Now transform the cup to a warm drink! Mix the drink to my liking and bring it to me!
 [color=#555555]Press[font_size=96][color=#5555aa] E [/color][/font_size](or [font_size=96][color=#5555aa]A[/color][/font_size] on Gamepad)  to interact with the [color=#5555aa] ingridients [/color][color=#555555][/color]( [img=150]res://ingridients/cinnamon.png[/img][img=150]res://ingridients/chocolate.png[/img][img=150]res://ingridients/honey.png[/img][img=150]res://ingridients/milk.png[/img] )"
+fit_content = true
 
 [node name="Step_Four_One" type="Control" parent="RecipeCanvas/TutorialControl"]
 z_index = 3
@@ -506,30 +504,31 @@ theme_override_constants/margin_bottom = 4
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "Make sure to fulfill the order before guests get angry! Otherwise they'll leave and give us a bad [font_size=100][color=ff0000]Score[/color][/font_size]......."
+fit_content = true
 
 [node name="Step_Four_Two" type="Control" parent="RecipeCanvas/TutorialControl"]
 z_index = 3
-custom_minimum_size = Vector2(1200, 500)
+custom_minimum_size = Vector2(1200, 650)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 34.0
-offset_top = 321.0
-offset_right = 1234.0
-offset_bottom = 821.0
+offset_left = 16.0
+offset_top = 335.0
+offset_right = 1216.0
+offset_bottom = 985.0
 scale = Vector2(0.235, 0.235)
 
 [node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_Two"]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 0
-offset_left = -140.426
-offset_top = -140.425
-offset_right = 359.574
-offset_bottom = 359.575
+offset_left = -106.383
+offset_top = -217.021
+offset_right = 393.617
+offset_bottom = 282.979
 rotation = -0.410683
 texture = ExtResource("6_tejgk")
 
@@ -538,10 +537,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -114.893
-offset_top = 63.8298
-offset_right = -114.893
-offset_bottom = 63.8298
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_1e414")
@@ -572,21 +567,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 4
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_bottom = 10
 
 [node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Four_Two/TextureRect/MarginContainer/TextureRect/MarginContainer"]
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "One last thing! If you made a mistake you can use the boiler to transform the [color=#5555aa] cup [/color] back to hot water.
-                         	[img=200]res://boiler/boiler_single.png[/img]
+                        [img=200]res://boiler/boiler_single.png[/img]
 "
+fit_content = true
 
 [node name="Step_Five" type="Control" parent="RecipeCanvas/TutorialControl"]
 z_index = 3
@@ -656,12 +652,13 @@ theme_override_constants/margin_bottom = 4
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
-theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_fonts/normal_font = ExtResource("7_quov3")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "Great! Good luck.... I leave you now.
 "
+fit_content = true
 
 [node name="BackToMenuTimer" type="Timer" parent="."]
 wait_time = 3.0
