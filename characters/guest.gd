@@ -1,10 +1,10 @@
 extends CharacterBody2D
 class_name Guest
 
-#TODO Add Tutorial...
-
 @export var movement_speed:float = 70
 @export var wrong_drink_saddness = 20
+@export var exit_cafe_target:Marker2D
+@export var is_tutorial_guest = false
 
 var cinnamon_bb_img = "[img=20]res://ingridients/cinnamon.png[/img]"
 var chocolate_bb_img = "[img=20]res://ingridients/chocolate.png[/img]"
@@ -12,7 +12,6 @@ var honey_bb_img = "[img=20]res://ingridients/honey.png[/img]"
 var milk_bb_img = "[img=20]res://ingridients/milk.png[/img]"
 
 var seat:Seat
-var exit_cafe_target:Marker2D
 var ingridients_to_order = ["cinnamon", "chocolate", "honey", "milk"]
 var current_guest_order = []
 var cup:Cup = null
@@ -22,7 +21,6 @@ var last_order_ingridients_count = 0
 var happyness:int = 100
 var wants_to_exit:bool = false
 
-@onready var is_tutorial_guest = false
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var cup_marker:Marker2D = $CupMarker2D
 @onready var speech_bubble_control = $SpeechBubbleControl
@@ -35,18 +33,27 @@ var wants_to_exit:bool = false
 @onready var happy_audio_player = $HappyAudioStreamPlayer
 @onready var sad_audio_player = $SadAudioStreamPlayer
 
+var tutorial_wrong_ingridients = false
+
 func _ready():
-	place_order_timer.start()
 	speech_bubble_control.visible = false
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
-	
-	if (Globals.watched_tutorial):
-		is_tutorial_guest = false
+
+	if Globals.watched_tutorial && is_tutorial_guest:
+		queue_free()
+		return
+
+	if (!Globals.watched_tutorial):
+		Globals.tutorial_guest = self
+		return
 	else:
-		Globals.watched_tutorial = true
-	
-	if seat != null:
-		set_movement_target(seat.global_position)
+		place_order_timer.start()
+		if seat != null:
+			set_movement_target(seat.global_position)
+
+func _exit_tree() -> void:
+	if is_tutorial_guest:
+		Globals.tutorial_guest = null
 	
 func _physics_process(delta):
 	_physics_navigation_process(delta)
@@ -111,15 +118,21 @@ func _create_random_order():
 func take_cup(cup_to_consume:Cup) -> bool:
 	if (cup != null || has_order == false):
 		return false
+		
+	if check_ingridients(cup_to_consume.ingridients):	
+		happy_audio_player.play()
 	
-	if check_ingridients(cup_to_consume.ingridients):
 		last_order_was_correct = true
 		last_order_ingridients_count = cup_to_consume.ingridients.size()
-		happy_audio_player.play()
 	else:
+		sad_audio_player.play()
+	
+		if is_tutorial_guest:
+			tutorial_wrong_ingridients = true
+			return false
+			
 		last_order_was_correct = false
 		last_order_ingridients_count = 0
-		sad_audio_player.play()
 	
 	cup_to_consume.get_parent().remove_child(cup_to_consume)
 	add_child(cup_to_consume)
@@ -162,11 +175,14 @@ func _on_consuming_order_timer_timeout() -> void:
 	place_order_timer.start()
 	
 func _on_place_order_timer_timeout() -> void:
+	place_order()
+
+func place_order():
 	_create_random_order()
 	_show_order_bubble_text()
 	speech_bubble_control.visible = true
-	has_order = true
-	
+	has_order = true	
+
 # BB Texts
 func _show_order_bubble_text():
 	var img_text:String = ""
@@ -180,6 +196,12 @@ func _on_happyness_timer_timeout() -> void:
 		happyness = max(0, happyness - 1)
 	
 	if happyness == 0 && !wants_to_exit:
+		if is_tutorial_guest:
+			return
+		
+		exit_cafe()
+			
+func exit_cafe():
 		if exit_cafe_target:
 			speech_bubble_control.visible = false
 			has_order = false

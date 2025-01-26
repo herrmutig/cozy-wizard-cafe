@@ -10,9 +10,19 @@ const SLIDE_MULTIPLIER = 75
 @onready var cup_marker:Marker2D = $CupMarker2D
 var interactable:Node2D
 var cup:Cup
+var enable_movement = true
+
+func _enter_tree() -> void:
+	Globals.player = self
+
+func _exit_tree() -> void:
+	Globals.player = null
 
 func _physics_process(delta: float) -> void:
-	var move_vector = get_move_vector()
+	var move_vector =  get_move_vector()
+	if enable_movement == false:
+		move_vector = Vector2.ZERO
+	
 	_handle_movement(move_vector, delta)
 	_handle_animation(move_vector)
 	_handle_interaction()
@@ -80,7 +90,7 @@ func _interact_with_guest(guest:Guest):
 		print("No cup for guest. maybe random dialogs to show?")
 
 func _interact_with_ingridient(ingridient:Ingridient):
-	if cup && cup._is_filled:
+	if cup && cup.is_filled:
 		cup.add_ingridient(ingridient)
 	else:
 		print("Cup is missing or cup is not filled.")

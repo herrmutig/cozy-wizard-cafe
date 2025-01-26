@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsgnqiedjkpxs"]
+[gd_scene load_steps=14 format=3 uid="uid://bsgnqiedjkpxs"]
 
 [ext_resource type="PackedScene" uid="uid://dd5hl7k0fgrf1" path="res://cafe/cafe.tscn" id="1_n30sh"]
 [ext_resource type="Script" path="res://game.gd" id="1_ryy12"]
 [ext_resource type="AudioStream" uid="uid://b6f5sjtt2c1ps" path="res://apple_cider.ogg" id="2_ngtux"]
 [ext_resource type="Script" path="res://recipe_ui.gd" id="4_a7kxc"]
 [ext_resource type="Texture2D" uid="uid://bo0b4j1l1sf3h" path="res://ui/music_icon.png" id="6_r5bfg"]
+[ext_resource type="Texture2D" uid="uid://dxwatj4leehnh" path="res://characters/character_4.png" id="6_tejgk"]
 
 [sub_resource type="Gradient" id="Gradient_elys3"]
 offsets = PackedFloat32Array(0.0642674, 0.290488, 0.987147)
@@ -13,6 +14,28 @@ colors = PackedColorArray(0.54666, 0.27894, 0.142238, 1, 0.653458, 0.341981, 0.1
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_02wc4"]
 gradient = SubResource("Gradient_elys3")
 fill_from = Vector2(0.948718, 1)
+
+[sub_resource type="Gradient" id="Gradient_qk6ii"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.131127, 0.329144, 0.41482, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1e414"]
+gradient = SubResource("Gradient_qk6ii")
+width = 48
+height = 48
+
+[sub_resource type="Gradient" id="Gradient_3jkht"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.912289, 0.912289, 0.912289, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qhdnk"]
+gradient = SubResource("Gradient_3jkht")
+width = 10
+height = 10
+
+[sub_resource type="SystemFont" id="SystemFont_xsosf"]
+font_names = PackedStringArray("Calibri")
+font_weight = 600
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ryy12")
@@ -87,7 +110,7 @@ text = "0"
 layout_mode = 2
 text = "Orders"
 
-[node name="Control" type="Control" parent="RecipeCanvas"]
+[node name="SliderControl" type="Control" parent="RecipeCanvas"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 3
 anchors_preset = 0
@@ -97,7 +120,7 @@ offset_right = 1194.0
 offset_bottom = 678.0
 size_flags_horizontal = 0
 
-[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/Control"]
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/SliderControl"]
 layout_mode = 0
 offset_left = 168.0
 offset_top = -36.0
@@ -105,7 +128,7 @@ offset_right = 228.0
 offset_bottom = 24.0
 texture = ExtResource("6_r5bfg")
 
-[node name="MusicSlider" type="HSlider" parent="RecipeCanvas/Control"]
+[node name="MusicSlider" type="HSlider" parent="RecipeCanvas/SliderControl"]
 custom_minimum_size = Vector2(150, 15)
 layout_mode = 1
 anchors_preset = 10
@@ -117,4 +140,532 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[connection signal="value_changed" from="RecipeCanvas/Control/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[node name="TutorialControl" type="Control" parent="RecipeCanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Step_One" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 212.0
+offset_top = 551.0
+offset_right = 2212.0
+offset_bottom = 901.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_One"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 1191.49
+offset_top = -327.66
+offset_right = 1691.49
+offset_bottom = 172.34
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_One"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_One/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_One/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_One/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_One/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Hello Apprentice! I have to leave the Café for a magical Quest! [font_size=84][color=#bb4200] You have to run the Café[/color][/font_size] while I'm gone!
+[color=#555555]Press [font_size=96][color=#5555aa] E [/color][/font_size](or [font_size=96][color=#5555aa]A[/color][/font_size] on Gamepad) to continue........[/color]"
+
+[node name="Step_Two" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 106.0
+offset_right = 2011.0
+offset_bottom = 456.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Two"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 17.0213
+offset_top = -297.872
+offset_right = 517.021
+offset_bottom = 202.128
+rotation = -0.108942
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Two"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Two/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Two/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Two/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Two/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Like I showed you. First pick up a [color=#5555aa]cup[/color] on the table in the kitchen.
+[color=#555555]Press[font_size=96][color=#5555aa] E [/color][/font_size](or [font_size=96][color=#5555aa]A[/color][/font_size] on Gamepad)  to interact with a [color=#5555aa] cup [/color][color=#555555]...[/color]
+[color=#5555aa]WASD[/color] (or [color=#5555aa]LS[/color] on Gamepad) to move.[/color]"
+
+[node name="Step_Three" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 151.0
+offset_right = 2480.0
+offset_bottom = 501.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Three"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 404.255
+offset_top = -344.681
+offset_right = 904.255
+offset_bottom = 155.319
+rotation = 0.326893
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Three"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.893
+offset_top = 63.8298
+offset_right = -114.893
+offset_bottom = 63.8298
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Three/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Three/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Three/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Three/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Good! Fill the cup with hot water!
+[color=#555555]Press[font_size=96][color=#5555aa] E [/color][/font_size](or [font_size=96][color=#5555aa]A[/color][/font_size] on Gamepad)  to interact with the [color=#5555aa] boiler [/color][color=#555555][/color][img=200]res://boiler/boiler_single.png[/img]"
+
+[node name="Step_Four" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 500)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 386.0
+offset_top = 503.0
+offset_right = 2386.0
+offset_bottom = 1003.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 1302.13
+offset_top = -187.234
+offset_right = 1802.13
+offset_bottom = 312.766
+rotation = -0.312235
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.893
+offset_top = 63.8298
+offset_right = -114.893
+offset_bottom = 63.8298
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Four/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Four/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Four/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Wonderful! Now transform the cup to a warm drink! Mix the drink to my liking and bring it to me!
+[color=#555555]Press[font_size=96][color=#5555aa] E [/color][/font_size](or [font_size=96][color=#5555aa]A[/color][/font_size] on Gamepad)  to interact with the [color=#5555aa] ingridients [/color][color=#555555][/color]( [img=150]res://ingridients/cinnamon.png[/img][img=150]res://ingridients/chocolate.png[/img][img=150]res://ingridients/honey.png[/img][img=150]res://ingridients/milk.png[/img] )"
+
+[node name="Step_Four_One" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 500)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 668.0
+offset_top = 77.0
+offset_right = 1868.0
+offset_bottom = 577.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_One"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 612.766
+offset_top = -263.83
+offset_right = 1112.77
+offset_bottom = 236.17
+rotation = 0.106215
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_One"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.893
+offset_top = 63.8298
+offset_right = -114.893
+offset_bottom = 63.8298
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Four_One/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_One/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Four_One/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Four_One/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Make sure to fulfill the order before guests get angry! Otherwise they'll leave and give us a bad [font_size=100][color=ff0000]Score[/color][/font_size]......."
+
+[node name="Step_Four_Two" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 500)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 34.0
+offset_top = 321.0
+offset_right = 1234.0
+offset_bottom = 821.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_Two"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = -140.426
+offset_top = -140.425
+offset_right = 359.574
+offset_bottom = 359.575
+rotation = -0.410683
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_Two"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.893
+offset_top = 63.8298
+offset_right = -114.893
+offset_bottom = 63.8298
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Four_Two/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Four_Two/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Four_Two/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Four_Two/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "One last thing! If you made a mistake you can use the boiler to transform the [color=#5555aa] cup [/color] back to hot water.
+                         	[img=200]res://boiler/boiler_single.png[/img]
+"
+
+[node name="Step_Five" type="Control" parent="RecipeCanvas/TutorialControl"]
+z_index = 3
+custom_minimum_size = Vector2(1200, 250)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 681.0
+offset_top = 349.0
+offset_right = 1881.0
+offset_bottom = 599.0
+scale = Vector2(0.235, 0.235)
+
+[node name="Scholar" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Five"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 42.5531
+offset_top = -259.574
+offset_right = 542.553
+offset_bottom = 240.426
+rotation = 0.0142642
+texture = ExtResource("6_tejgk")
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Five"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.893
+offset_top = 63.8298
+offset_right = -114.893
+offset_bottom = 63.8298
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1e414")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Five/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="RecipeCanvas/TutorialControl/Step_Five/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_qhdnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="RecipeCanvas/TutorialControl/Step_Five/TextureRect/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleRichText" type="RichTextLabel" parent="RecipeCanvas/TutorialControl/Step_Five/TextureRect/MarginContainer/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_xsosf")
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Great! Good luck.... I leave you now.
+"
+
+[node name="BackToMenuTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="value_changed" from="RecipeCanvas/SliderControl/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="timeout" from="BackToMenuTimer" to="." method="_on_back_to_menu_timer_timeout"]

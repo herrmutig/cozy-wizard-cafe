@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dd5hl7k0fgrf1"]
+[gd_scene load_steps=25 format=4 uid="uid://dd5hl7k0fgrf1"]
 
 [ext_resource type="TileSet" uid="uid://cj132gbj1lf7l" path="res://cafe/cafe_tileset.tres" id="1_25d03"]
 [ext_resource type="Script" path="res://cafe/cafe.gd" id="1_ph1xr"]
@@ -7,11 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://juh3ge1p70yb" path="res://characters/guests/guest_01.tscn" id="3_mp7v7"]
 [ext_resource type="PackedScene" uid="uid://de7oxxma4ils8" path="res://cup/cup.tscn" id="4_3pe1r"]
 [ext_resource type="PackedScene" uid="uid://5pawk2a4but5" path="res://characters/guests/guest_02.tscn" id="4_mshbb"]
+[ext_resource type="PackedScene" uid="uid://28an4if53rux" path="res://characters/guests/guest_04.tscn" id="5_ei1f5"]
 [ext_resource type="Script" path="res://cafe/seat.gd" id="5_mhrvj"]
 [ext_resource type="PackedScene" uid="uid://c8qs8ondxexx" path="res://boiler/boiler.tscn" id="5_ppqtw"]
 [ext_resource type="PackedScene" uid="uid://c56553h8m3tqs" path="res://characters/guests/guest_03.tscn" id="5_x247a"]
 [ext_resource type="PackedScene" uid="uid://dabucqmcm4l37" path="res://ingridients/scenes/chocolate_ingridient.tscn" id="6_5htng"]
+[ext_resource type="PackedScene" uid="uid://bvr81kkpmtmef" path="res://characters/guests/guest_05.tscn" id="6_m0yfj"]
 [ext_resource type="PackedScene" uid="uid://cxnoc2r1008vv" path="res://ingridients/scenes/cinnamon_ingridient.tscn" id="7_6ljmt"]
+[ext_resource type="PackedScene" uid="uid://600j2fx7e1hs" path="res://characters/guests/guest_06.tscn" id="7_osjpv"]
 [ext_resource type="PackedScene" uid="uid://b8ljm7dfpt611" path="res://ingridients/scenes/honey_ingridient.tscn" id="8_0v7mv"]
 [ext_resource type="PackedScene" uid="uid://078gss1qcl4h" path="res://ingridients/scenes/milk_ingridient.tscn" id="9_mum14"]
 
@@ -39,7 +42,7 @@ size = Vector2(260, 12)
 [node name="Cafe" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ph1xr")
-guest_scenes = Array[PackedScene]([ExtResource("2_0ujni"), ExtResource("3_mp7v7"), ExtResource("4_mshbb"), ExtResource("5_x247a")])
+guest_scenes = Array[PackedScene]([ExtResource("3_mp7v7"), ExtResource("4_mshbb"), ExtResource("5_x247a"), ExtResource("5_ei1f5"), ExtResource("6_m0yfj"), ExtResource("7_osjpv")])
 
 [node name="TilemapLayers" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -82,8 +85,10 @@ tile_set = ExtResource("1_25d03")
 position = Vector2(360, 300)
 movement_speed = 185.0
 
-[node name="Guest" parent="." instance=ExtResource("2_0ujni")]
+[node name="ScholarGuest" parent="." node_paths=PackedStringArray("exit_cafe_target") instance=ExtResource("2_0ujni")]
 position = Vector2(318, 365)
+exit_cafe_target = NodePath("../GuestSpawnMarker2D")
+is_tutorial_guest = true
 
 [node name="GuestSpawnTimer" type="Timer" parent="."]
 wait_time = 30.0

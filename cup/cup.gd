@@ -4,7 +4,7 @@ class_name Cup
 @export var can_interact = true
 @onready var a_sprite = $AnimatedSprite2D
 
-@export var _is_filled = false
+@export var is_filled = false
 @export var ingridients:Array[String] = []
 
 var is_readied_first_time:bool = true
@@ -16,14 +16,14 @@ func _ready() -> void:
 	if is_readied_first_time:
 		Globals.cup_count += 1
 
-	if _is_filled:
+	if is_filled:
 		fill()
 		_update_cup_fill()
 	else:
 		a_sprite.play("default")
 
 func _update_cup_fill():
-	if !_is_filled:
+	if !is_filled:
 		return
 	var animation = ""
 	
@@ -46,7 +46,7 @@ func _update_cup_fill():
 		a_sprite.play(animation)
 
 func add_ingridient(ingridient:Ingridient):
-	if !_is_filled:
+	if !is_filled:
 		return
 	
 	# bit bad naming. I want the "string name" of the ingridient
@@ -58,7 +58,7 @@ func add_ingridient(ingridient:Ingridient):
 func fill():
 	ingridients.clear()
 	a_sprite.play("water")
-	_is_filled = true
+	is_filled = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body is Player):

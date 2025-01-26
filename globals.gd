@@ -1,5 +1,7 @@
 extends Node
 
+var tutorial_guest:Guest = null
+var player:Player = null
 var music_volume = 0.3
 var score = 0
 var guests_count = 0

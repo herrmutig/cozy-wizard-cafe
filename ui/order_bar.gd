@@ -10,7 +10,7 @@ func _ready() -> void:
 		guest_image_rect.texture = guest.sprite.texture
 		_show_order_text()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if guest:
 		happyness_bar.value = float(guest.happyness)
 	 

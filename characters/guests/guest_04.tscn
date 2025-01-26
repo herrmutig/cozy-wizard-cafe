@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://28an4if53rux"]
+
+[ext_resource type="PackedScene" uid="uid://c56553h8m3tqs" path="res://characters/guests/guest_03.tscn" id="1_l5x3e"]
+[ext_resource type="Texture2D" uid="uid://dg8hp6wyioa2" path="res://characters/character_7.png" id="2_rh1h6"]
+
+[node name="Guest" instance=ExtResource("1_l5x3e")]
+
+[node name="CharacterSprite2D" parent="." index="2"]
+texture = ExtResource("2_rh1h6")
